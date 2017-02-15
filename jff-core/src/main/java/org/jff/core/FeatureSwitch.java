@@ -28,4 +28,18 @@ public class FeatureSwitch {
 	public void switchOff() {
 		this.switchState = false;
 	}
+
+	public void ifOn(Runnable function) {
+		if (this.switchState) {
+			function.run();
+		}
+	}
+
+	public void ifOn(Runnable whenOn, Runnable whenOff) {
+		if (this.switchState) {
+			whenOn.run();
+		} else {
+			whenOff.run();
+		}
+	}
 }
