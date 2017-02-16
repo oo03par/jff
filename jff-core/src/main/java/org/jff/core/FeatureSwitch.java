@@ -1,12 +1,19 @@
 package org.jff.core;
 
 public class FeatureSwitch {
+	public static final FeatureSwitch DISABLED_SWITCH = new FeatureSwitch("disabled", false);
+	public static final FeatureSwitch ENABLED_SWITCH = new FeatureSwitch("enabled", true);
+	
 	private final String name;
 	private boolean enabled;
 
 	public FeatureSwitch(final String name) {
+		this(name, false);
+	}
+	
+	private FeatureSwitch(final String name, final boolean enabled) {
 		this.name = name;
-		this.enabled = false;
+		this.enabled = enabled;
 	}
 
 	public String getName() {

@@ -97,7 +97,6 @@ public class FeatureSwitchTest {
 		verify(whenOff, never()).run();
 	}
 	
-	
 	@Test
 	public void shouldNotRunFunctionalCodeIfSwitchIsOnAndDoRunOffCode() {
 		Runnable whenOn = mock(Runnable.class);
@@ -109,5 +108,20 @@ public class FeatureSwitchTest {
 		
 		verify(whenOn, never()).run();
 		verify(whenOff).run();
+		
+		
+		unit.ifEnabled(() -> {
+			
+		});
+	}
+	
+	@Test
+	public void disabledSwitchShouldBeOff() {
+		assertThat(FeatureSwitch.DISABLED_SWITCH.isEnabled(), is(false));
+	}
+
+	@Test
+	public void enabledSwitchShouldBeOn() {
+		assertThat(FeatureSwitch.ENABLED_SWITCH.isEnabled(), is(true));
 	}
 }
